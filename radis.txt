@@ -1,0 +1,262 @@
+wsl --install
+makesure pass and name set it
+
+https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-windows/
+
+
+
+then  start server  two way to start server 1 redis-server  2  sudo service redis-server start
+4 redis-cli  make sure karna new terminal may karna ubandu ka jab redis server on ho tab 
+
+5 sudo service redis-server stop  or       redis-cli shutdown
+
+6 ager check karna ha redis chalu ha ya nhe to sudo service redis-server status   or  just remove everything just type ping
+
+7 we can also download ui version of redis Redis Insight download kar lena
+
+
+
+//  all data type support reddis
+
+Key Operations
+    -> keys * – Get all keys in the database.
+    -> del key – Delete the specified key.
+
+
+Strings:-> 
+
+String Set/Get Operations
+    -> set key value – Set a key to hold the string value.  example set lolly "kuku singh"
+    -> get key – Get the value of a key.
+    -> setnx key value – Set the value only if the key does not exist.
+    -> getset key value – Get the old value and set the new one.
+    -> append key value – Append a value to the existing string.
+    -> strlen key – Get the length of the value stored at key.
+    -> getrange name 0 2   ish say hame substring ki trha value milayga
+
+
+
+example   set name "Bhawishya Singh" ex 10 // 10 sec may expire ho jayga
+
+
+2 ager koi data may expire set nhe kia and karna chahte ho to  expire lolly 10
+
+3 expireat dugu 5000000
+
+Number:->
+
+Numeric Operations (if value is an integer or float)
+    -> incr key – Increment the value by 1.
+    -> decr key – Decrement the value by 1.
+    -> incrby key number – Increment the value by a specific integer.
+    -> decrby key number – Decrement the value by a specific integer.
+    -> incrbyfloat key number – Increment the value by a float.
+
+
+
+List:-> 
+
+
+Lists  ordered collections of strings.
+
+List Operations
+
+LPUSH key value – Add value to the left of list.
+
+RPUSH key value – Add value to the right of list.
+
+LPOP key – Remove and get first element from left.
+
+RPOP key – Remove and get last element from right.
+
+LRANGE key start stop – Get elements in range.
+
+
+
+
+
+
+Sets:->
+
+Sets = unique, unordered strings.
+
+Set Operations
+
+SADD key value – Add value to set.
+
+SMEMBERS key – Get all members.
+
+SISMEMBER key value – Check if value exists.
+
+SREM key value – Remove value from set.
+
+SCARD key – Count elements in set.
+
+
+
+Sorted Sets:->
+
+Zsets = like Sets, but ordered by score.
+
+Sorted Set Operations................................
+
+ZADD key score value – Add value with a score.
+
+ZRANGE key start stop [WITHSCORES] – Get items in order.
+
+ZREM key value – Remove value.
+
+ZCARD key – Count items.
+....................................................
+Example
+
+ZADD scores 100 Alice
+ZADD scores 200 Bob
+ZRANGE scores 0 -1 WITHSCORES
+
+
+
+Hashes:->
+
+Hashes = key → field/value pairs (like objects).
+
+Hash Operations
+
+HSET key field value – Set field to value.
+
+HGET key field – Get value of field.
+
+HGETALL key – Get all fields and values.
+
+HDEL key field – Delete a field.
+
+HLEN key – Count fields.
+
+
+
+
+
+
+
+
+
+Bitmaps:->
+
+Bitmaps = binary bits stored under a string key.
+
+Bitmap Operations
+
+SETBIT key offset value – Set bit (0 or 1).
+
+GETBIT key offset – Get bit value.
+
+BITCOUNT key – Count set bits.
+
+
+
+
+HyperLogLogs:->
+
+HyperLogLog = approximate cardinality counting (unique items).
+
+HyperLogLog Operations
+
+PFADD key value [value ...] – Add elements.
+
+PFCOUNT key – Count approx. unique items.
+
+PFMERGE destkey key [key ...] – Merge HLLs.
+
+
+
+
+
+
+Streams:->
+
+Streams = append-only log of entries (time-series style).
+
+Stream Operations
+
+XADD key * field value – Add new entry.
+
+XRANGE key start end – Read stream entries.
+
+XREAD COUNT n STREAMS key id – Read new entries.
+
+
+
+
+
+
+Geospatial Indexes:->
+
+Geo Operations
+
+GEOADD key longitude latitude member – Add geo data.
+
+GEORADIUS key lon lat radius unit – Find items nearby.
+
+GEOPOS key member – Get coordinates.
+
+
+
+Pub/Sub:->
+
+Pub/Sub = publish/subscribe messaging.
+
+Pub/Sub Operations
+
+PUBLISH channel message – Send message.
+
+SUBSCRIBE channel – Listen for messages.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////// time set//////////////////////////////////
+
+
+
+Redis supports setting TTL (Time To Live) for any key. Expiry commands are grouped by when the expiry is applied:
+
+While Setting Key
+    -> SET key value EX seconds – Set with expiry in seconds
+    -> SET key value PX milliseconds – Set with expiry in ms
+    -> SETEX key seconds value – Legacy string-only alternative to SET ... EX
+    -> PSETEX key ms value – Legacy string-only alternative to SET ... PX
+
+After Key is Set
+    -> EXPIRE key seconds – Set expiry in seconds
+    -> PEXPIRE key ms – Set expiry in milliseconds
+    -> EXPIREAT key timestamp – Expire at Unix time (sec)
+    -> PEXPIREAT key ms_timestamp – Expire at Unix time (ms)
+    -> TTL key – Time left (seconds)
+    -> PTTL key – Time left (milliseconds)
+    -> PERSIST key – Remove expiry
+
+
+
+
+
