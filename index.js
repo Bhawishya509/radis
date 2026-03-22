@@ -2,6 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import { createClient } from "redis";
 import connectDB from "./database.js";
+// const fakeJson= await import("./fake.json",{
+//    with: { type: "json" }
+// })   this is use for fake json data file
+
 import modelsConnection from "./model/User.js";
 
 dotenv.config();
@@ -40,6 +44,10 @@ app.post("/post", async (req, res) => {
 app.get("/", async (req, res) => {
   const data = await redisClient.hGetAll("user_data");
   if (Object.keys(data).length > 0) {
+
+
+    // let data= await redisClient.hGetAll(redisKey);
+    // ager fake data jo file may ho send karna ha to res.send(JSON.parse(data.data))
     data.subjects = JSON.parse(data.subjects);
     return res.status(200).json(data);
   } else {
